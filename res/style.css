@@ -207,3 +207,22 @@ p{
 .footer{
     text-align: center;
 }
+.footer p a{
+    font-weight: bold;
+}
+#social_icons ul{
+    list-style: none;
+}
+#social_icons ul li{
+    float: left;
+    box-shadow: 0px 1px 1px #a7dcef,inset 0px 2px 5px #67a7bd;
+    background: -webkit-linear-gradient(top, #8dc1d3 0%,#67a7bd 100%);
+    text-indent: -999px;
+}
+#social_icons ul li a{
+    height: 32px;
+    width: 32px;
+    display: block;
+    color: #898989;
+    background: url('fb.png') 50% 50% no-repeat;
+}

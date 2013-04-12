@@ -3,10 +3,11 @@
 <head>
 <title><%=title%></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="res/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="main">
+  <% include icons.html %>
   <div class="header">
     <div class="header_resize">
       <div class="logo">
@@ -14,11 +15,7 @@
           <p>Follow your heart, Pursue your dream!</p>
       </div>
       <div class="menu_nav">
-        <ul>
-          <li class="active"><a href="index.html">Summary</a></li>
-          <li><a href="experience.html">Experiences</a></li>
-          <li><a href="blog.html">Blog</a></li>
-        </ul>
+        <% include tab %>
       </div>
       <div class="clr"></div>
     </div>
@@ -26,13 +23,7 @@
   <div class="content">
     <div class="content_resize">
       <div class="mainbar">
-      <% if(sections.length){
-         sections.forEach(function(section){ %>
-          <div class="section">
-            <%=section%> 
-         </div>
-          <% }) %>
-      <% } %>
+      <% include cv %>
       </div>
       <div class="sidebar">
         <div class="searchform">
@@ -61,7 +52,7 @@
     </div>
   </div>
   <div class="footer">
-      <p>Powered by <a href="https://github.com/larryhe/tinyhttpd">tinyhttpd</a> and <a href="http://www.ramhost.us/">ramhost</a></p>
+      <p>Powered by <a href="https://github.com/larryhe/tinyhttpd">tinyhttpd</a> and <a href="http://nodejs.org/">node.js</a></p>
   </div>
 </div>
 </html>
