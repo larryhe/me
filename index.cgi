@@ -6,6 +6,7 @@ var ejs = require('ejs')
 var ret = ejs.render(layout, {
     title: "Welcome to Larry's personal website",
     filename: 'layout.ejs',
+    main: 'cv',
     tab: 'me'
 });
 console.log('Content-type: text/html');
