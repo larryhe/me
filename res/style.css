@@ -184,3 +184,8 @@ ul#my_projects{
     list-style: none;
     padding: 4px;
 }
+#login_box{
+    margin: 0 auto;
+    width: 500px;
+    padding: 40px 0;
+}
