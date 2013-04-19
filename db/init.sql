@@ -1,0 +1,9 @@
+insert into tag values (1, 'linux');
+insert into tag values (2, 'scripting');
+insert into tag values (3, 'node.js');
+insert into tag values (4, 'bash');
+insert into tag values (5, 'ruby');
+insert into tag values (6, 'python');
+insert into tag values (7, 'c/c++');
+insert into tag values (8, 'javascript');
+insert into tag values (9, 'vim');

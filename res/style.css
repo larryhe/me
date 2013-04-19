@@ -189,3 +189,14 @@ ul#my_projects{
     width: 500px;
     padding: 40px 0;
 }
+#list_box{
+    margin: 0 auto;
+    width: 600px;
+    padding: 40px 0;
+}
+#inputTitle{
+    height: 30px;
+}
+#inputBlog{
+    width: 500px;
+}
