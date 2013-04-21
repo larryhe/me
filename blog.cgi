@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-var ejs = require('ejs')
-  , fs = require('fs')
-  , layout = fs.readFileSync(__dirname + '/layout.ejs', 'utf8');
-
-var ret = ejs.render(layout, {
-    title: "My blogs",
-    filename: 'layout.ejs',
-    main: 'blog',
-    tab: 'blog'
+var me = require('./me');
+var Base = me.Base;
+var blog = Base.extend({
+    options: {
+        tab : 'blog',
+        title : 'My blogs'
+    },
+    getContent: function(){
+        return this.fs.readFileSync(__dirname + '/blog.ejs', 'utf8');
+    }
 });
-console.log('Content-type: text/html');
-console.log('');
-console.log(ret);
+new blog().render();

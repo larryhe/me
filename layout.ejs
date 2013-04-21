@@ -24,11 +24,7 @@
   <div class="content">
     <div class="content_resize">
         <div class="mainbar">
-        <% if(main == 'blog'){ %>
-            <% include blog.ejs %>
-        <% } else { %>
-            <% include cv.txt %>
-      <% } %>
+            <%=content%>
       </div>
       <div class="sidebar">
           <%include sidebar.ejs%>

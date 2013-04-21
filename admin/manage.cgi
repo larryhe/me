@@ -13,6 +13,13 @@ password  = form.getvalue('password')
 m.update(password)
 user_pass = (username, m.hexdigest())
 record=db.execQuery('SELECT * FROM user WHERE name=? and password=?', user_pass)
+tags=[];
+tags.append('<select name="tag">')
+tag_record=db.execQueryAll('select * from tag')
+for tag in tag_record:
+    tags.append('<option value="'+str(tag[0])+'">'+tag[1]+'</option>')
+tags.append('</select>')
+select_str=''.join(tags)
 if record == None:
     print "Location: /admin/login.cgi?error_login=y\r\n\r\n"
 else:
@@ -35,16 +42,16 @@ else:
         <tr>
             <th>#</th>
             <th>Title</th>
+            <th>Tag</th>
             <th>Status</th>
-            <th>Action</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
+            <td>1</td>
+            <td>linux kernel exploration</td>
+            <td>linux</td>
+            <td>draft</td>
         </tr>
         </tbody>
     </table>
@@ -63,24 +70,16 @@ else:
 <div class="control-group">
 <label class="control-label" for="inputTag">Tag</label>
 <div class="controls">
-<select>
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-</select>
+%s
 </div>
 </div>
 <div class="control-group">
 <label class="control-label" for="inputStatus">Status</label>
 <div class="controls">
-<select>
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
+<select name="status">
+<option value="1">Draft</option>
+<option value="2">Published</option>
+<option value="3">Deleted</option>
 </select>
 </div>
 <div class="control-group">
@@ -103,4 +102,4 @@ else:
     </div>
     </div>
     </html>
-    """
+    """ % (select_str,)
