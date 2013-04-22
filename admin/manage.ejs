@@ -1,0 +1,91 @@
+<div id="list_box">
+<button class="btn" id="newBlog">Add New Blog</button>
+<table id="blog_list" class="table table-hover">
+    <thead>
+    <tr>
+        <th>#Number</th>
+        <th>Title</th>
+        <th>Tag</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+<h3 id="myModalLabel">Modal header</h3>
+</div>
+<div class="modal-body">
+<div class="control-group">
+<label class="control-label" for="inputTitle">Title</label>
+<div class="controls">
+<input type="text" id="inputTitle" placeholder="Title">
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="inputTag">Tag</label>
+<div class="controls">
+<select id="tag" name="tag"></select>
+</div>
+</div>
+<div class="control-group">
+<label class="control-label" for="inputStatus">Status</label>
+<div class="controls">
+<select id="status" name="status">
+<option value="1">Draft</option>
+<option value="2">Published</option>
+<option value="3">Deleted</option>
+</select>
+</div>
+<div class="control-group">
+<label class="control-label">Blog</label>
+<div class="controls">
+<textarea rows="8" id="inputContent"></textarea>
+</div>
+</div>
+</div>
+
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<button class="btn btn-primary">Save</button>
+</div>
+</div>
+</div>
+<script>
+$(function(){
+    $("#newBlog").on('click',function() {
+        var wnd = $('#myModal');
+        wnd.find('input').val('');
+        wnd.find('textarea').val('');
+        wnd.find('select').val(1);
+        wnd.modal('show'); 
+    });
+    $.get('/admin/ajax_action_blog.cgi?action=config',function(data){
+        var div = $('<div>').append($.parseHTML(data)),
+            select = div.find('select'),
+            table = div.find('table');
+        $("#tag").append(select.html());
+        $("#blog_list tbody").replaceWith(table.html());
+    });
+    $("#myModal button.btn-primary").on('click', function() {
+        $.ajax({
+            type: "POST",
+            url: '/admin/ajax_action_blog.cgi',
+            data: {title: $("#inputTitle").val(), tag: $("#tag").val(), status: $("#status").val(), content: $("inputContent").val(), action: 'new'},
+        }).done(function(data){
+            var tr = $('<div>').append($.parseHTML(data)).find('tr'),
+                repr = 'tr[rowid=' + tr.attr('rowid') + ']',
+                row = $('#blog_list').find(repr);
+            if(row.length == 0){
+                $("#blog_list tbody").append(tr);
+            }else{
+                row.replaceWith(data);
+            }
+            $("#myModal").modal('hide');
+        });
+    });
+});
+</script>

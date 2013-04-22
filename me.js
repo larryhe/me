@@ -70,6 +70,11 @@
 function escape(html){
     return html;
 }
+function copy(dest, src){
+    for (var key in src) {
+        dest[key] = src[key];
+    };
+}
 exports.Base = Class.extend({
     init: function(){
         this.ejs = require('ejs');
@@ -83,16 +88,15 @@ exports.Base = Class.extend({
         console.log(ret);
     },
     getOptions: function(){
-        this.options = this.options || {};
-        this.options.escape = escape;
-        this.options.title = "Welcome to Larry's personal website";
-        this.options.filename = 'layout.ejs';
-        this.options.content = this.getContent();
-        this.options.tab = 'me';
-        return this.options;
-    },
-    getContent: function(){
-        return this.fs.readFileSync(__dirname + '/cv.txt', 'utf8');
+        var config = {};
+        config.escape = escape;
+        config.title = "Welcome to Larry's personal website";
+        config.filename = __filename;
+        config.tab = 'me';
+        config.content = this.fs.readFileSync(__dirname + '/cv.txt', 'utf8'); 
+        config.sidebar = this.fs.readFileSync(__dirname + '/sidebar.ejs', 'utf8'); 
+        copy(config, this.options);
+        return config;
     }
 });
 

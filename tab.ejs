@@ -1,9 +1,12 @@
 <ul>
 <% if (tab =='me'){ %>
-    <li class="active"><a href="index.cgi">About me</a></li>
-    <li><a href="blog.cgi">Blog</a></li>
-<% }else { %>
-    <li><a href="index.cgi">About me</a></li>
-    <li class="active"><a href="blog.cgi">Blog</a></li>
+    <li class="active"><a href="/index.cgi">About me</a></li>
+    <li><a href="/blog.cgi">Blog</a></li>
+<% }else if (tab == 'blog'){ %>
+    <li><a href="/index.cgi">About me</a></li>
+    <li class="active"><a href="/blog.cgi">Blog</a></li>
+<% } else{ %>
+    <li><a href="/index.cgi">About me</a></li>
+    <li><a href="/blog.cgi">Blog</a></li>
 <% } %>
 </ul>

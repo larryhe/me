@@ -3,15 +3,17 @@
 <head>
 <title><%=title%></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="res/style.css" rel="stylesheet" type="text/css" />
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/res/style.css" rel="stylesheet" type="text/css" />
+<script src="/res/jquery-1.9.1.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="main">
   <div class="header">
     <div class="topbar">
       <div class="profile">
-          <img src="res/profile2.jpg"/>
+          <img src="/res/profile2.jpg"/>
           <h1>Larry He</h1>
           <p>Follow my heart, Pursue my dream!</p>
       </div>
@@ -27,13 +29,13 @@
             <%=content%>
       </div>
       <div class="sidebar">
-          <%include sidebar.ejs%>
+          <%=sidebar%>
       </div>
       <div class="clr"></div>
     </div>
   </div>
   <div class="footer">
-      <p>Powered by <a href="https://github.com/larryhe/tinyhttpd">tinyhttpd</a> and <a href="http://nodejs.org/">node.js</a> and <a href="http://www.sqlite.org/">SQLite</a></p>
+      <p>Powered by <a href="https://github.com/larryhe/tinyhttpd">tinyhttpd</a> and <a href="http://nodejs.org/">node.js</a> and <a href="http://www.python.org/">python</a> and <a href="http://www.sqlite.org/">sqlite</a></p>
   </div>
 </div>
 </html>
