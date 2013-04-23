@@ -9,12 +9,8 @@ body {
 html, .main {
 	padding:0;
 	margin:0;
-    background-color: #f1f1f1;
     font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #222;
-}
-.main {
-	background:no-repeat center top;
 }
 .clr {
 	clear:both;
@@ -150,28 +146,20 @@ p{
 	margin:0;
 	padding:16px 0 0 0;
 }
-.content .mainbar .comment img.userpic {
+.content .mainbar{
 	border:1px solid #dedede;
 	margin:10px 16px 0 0;
 	padding:0;
 	float:left;
 }
-.content .section{
-    box-shadow: 0 0 10px rgba( 0, 0, 0, 0.1 );
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    padding: 10px;
-    margin-bottom: 20px;
-    color: #222;
-}
-.section h1{
+#profile h1{
     font-size: 18px;
 }
-.section h1 p{
+#profile h1 p{
     font-size: 12px;
     color: #222;
 }
-.section h2{
+#profile h2{
     font-size: 14px;
 }
 .footer{

@@ -93,7 +93,7 @@ exports.Base = Class.extend({
         config.title = "Welcome to Larry's personal website";
         config.filename = __filename;
         config.tab = 'me';
-        config.content = this.fs.readFileSync(__dirname + '/cv.txt', 'utf8'); 
+        config.content = this.fs.readFileSync(__dirname + '/cv.ejs', 'utf8'); 
         config.sidebar = this.fs.readFileSync(__dirname + '/sidebar.ejs', 'utf8'); 
         copy(config, this.options);
         return config;
