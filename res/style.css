@@ -194,6 +194,7 @@ ul#my_projects{
     width: 600px;
     padding: 40px 0;
 }
-#inputBlog{
+#inputContent{
     width: 500px;
+    height: 125px;
 }

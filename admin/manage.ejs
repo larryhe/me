@@ -1,5 +1,6 @@
 <div id="list_box">
 <button class="btn" id="newBlog">Add New Blog</button>
+<div id="container"></div>
 <table id="blog_list" class="table table-hover">
     <thead>
     <tr>
@@ -22,6 +23,8 @@
 <label class="control-label" for="inputTitle">Title</label>
 <div class="controls">
 <input type="text" id="inputTitle" placeholder="Title">
+<input type="hidden" id="blogId">
+<input type="hidden" id="action">
 </div>
 </div>
 <div class="control-group">
@@ -34,7 +37,7 @@
 <label class="control-label" for="inputStatus">Status</label>
 <div class="controls">
 <select id="status" name="status">
-<option value="1">Draft</option>
+<option value="1">Drafted</option>
 <option value="2">Published</option>
 <option value="3">Deleted</option>
 </select>
@@ -55,12 +58,28 @@
 </div>
 </div>
 <script>
+function wndHandler(event){
+    var id = $(event.target).parent().parent().attr("rowid");
+    $.get('/admin/ajax_action_blog.cgi?id=' + id, function(data){
+        var wrap = $('<div>').append($.parseHTML(data)),
+            wnd = $('#myModal');
+        wnd.find('input').val(wrap.find('div.title').html());
+        wnd.find('textarea').val(wrap.find('div.content').html());
+        wnd.find('#tag').val(wrap.find('div.tag').html());
+        wnd.find('#status').val(wrap.find('div.status').html());
+        wnd.find('#action').val('update');
+        wnd.find('#blogId').val(wrap.find('div.blogId').html());
+        wnd.modal('show');
+    });
+}
+
 $(function(){
     $("#newBlog").on('click',function() {
         var wnd = $('#myModal');
         wnd.find('input').val('');
         wnd.find('textarea').val('');
         wnd.find('select').val(1);
+        wnd.find('#action').val('new');
         wnd.modal('show'); 
     });
     $.get('/admin/ajax_action_blog.cgi?action=config',function(data){
@@ -69,12 +88,14 @@ $(function(){
             table = div.find('table');
         $("#tag").append(select.html());
         $("#blog_list tbody").replaceWith(table.html());
+        $("#blog_list td a").on('click', wndHandler);
     });
     $("#myModal button.btn-primary").on('click', function() {
         $.ajax({
             type: "POST",
             url: '/admin/ajax_action_blog.cgi',
-            data: {title: $("#inputTitle").val(), tag: $("#tag").val(), status: $("#status").val(), content: $("inputContent").val(), action: 'new'},
+            data: {title: $("#inputTitle").val(), tag: $("#tag").val(), status: $("#status").val(), 
+                    content: $("#inputContent").val(), id: $('#blogId').val(), action: $('#action').val()},
         }).done(function(data){
             var tr = $('<div>').append($.parseHTML(data)).find('tr'),
                 repr = 'tr[rowid=' + tr.attr('rowid') + ']',
@@ -84,6 +105,7 @@ $(function(){
             }else{
                 row.replaceWith(data);
             }
+            $("#blog_list").find(repr).on('click', wndHandler);
             $("#myModal").modal('hide');
         });
     });

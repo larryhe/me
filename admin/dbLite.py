@@ -19,6 +19,11 @@ class Dblite:
         self.conn.commit()
 
     def updateBlog(self, params):
+        sql = "update blog set title=?, content=?, tag=?, status=? where id=?"
+        self.execUpdate(sql, params)
+        return self.getBlogById(params[4])
+
+    def newBlog(self, params):
         insert = "insert into blog values (?, ?, ?, ?, ?, ?)"
         select = "select max(id) from blog"
         record = self.execQuery(select)
@@ -31,7 +36,11 @@ class Dblite:
 
     def getBlogById(self, id):
         params = (id,)
-        return self.execQuery('select * from blog where id=?', params)
+        return self.execQuery('select b.id, b.title, t.desc, b.status from blog b, tag t where b.tag=t.id and b.id=?', params)
+
+    def getBlogRawById(self, id):
+        params = (id,)
+        return self.execQuery('select id, title, tag, status, content from blog where id=?', params)
 
     def today(self):
         today = datetime.date.today()
