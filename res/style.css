@@ -54,7 +54,7 @@ p{
     line-height: 26px;
     font-weight: normal;    
 }
-.header, .content, .menu_nav, .fbg, form, ol, ol li, ul, .content .mainbar, .content .sidebar {
+.header, .content, .menu_nav, .sidebar {
 	margin:0;
 	padding:0;
 }
@@ -101,19 +101,6 @@ p{
 	padding:16px 0 24px;
 	width:970px;
 }
-.content .mainbar {
-	margin:0;
-	padding:0;
-	float:left;
-	width:670px;
-}
-.content .mainbar img {
-	border:1px solid #d8dbdc;
-}
-.content .mainbar img.fl {
-	margin:4px 16px 4px 0;
-	float:left;
-}
 .content .sidebar {
 	padding:0;
 	float:right;
@@ -142,15 +129,12 @@ p{
 	font-size:11px;
 	float:left;
 }
-.content .mainbar .comment {
-	margin:0;
-	padding:16px 0 0 0;
-}
 .content .mainbar{
 	border:1px solid #dedede;
-	margin:10px 16px 0 0;
+	margin:2px 16px 0 0;
 	padding:0;
 	float:left;
+    width: 670px;
 }
 #profile h1{
     font-size: 18px;
@@ -185,4 +169,13 @@ ul#my_projects{
 #inputContent{
     width: 500px;
     height: 125px;
+}
+#profile .accordion-inner{
+    background-color: #F8F8F8;
+}
+#profile .accordion-heading:hover{
+    background-color: #F1F1F1;
+}
+div#introduction a{
+    color:#0077b5;
 }
