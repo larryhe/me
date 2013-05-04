@@ -2,7 +2,7 @@
 # Import modules for CGI handling and sqlite module
 import cgi, cgitb, pdb
 from dbLite import Dblite
-db= Dblite('/Users/larry/local/sbin/me.db')
+db= Dblite()
 # Create instance of FieldStorage 
 form = cgi.FieldStorage() 
 # Get data from fields

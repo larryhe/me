@@ -1,7 +1,9 @@
 import  sqlite3, datetime
 class Dblite: 
-    def __init__(self, db):
-        self.conn = sqlite3.connect(db)
+    def __init__(self):
+        conf = open('config.txt','r')
+        url = conf.readline().rstrip()
+        self.conn = sqlite3.connect(url)
         self.c = self.conn.cursor()
 
     def execQuery(self, sql, *params):
