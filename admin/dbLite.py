@@ -30,7 +30,7 @@ class Dblite:
         select = "select max(id) from blog"
         record = self.execQuery(select)
         id = 1
-        if record != None:
+        if record != None and record[0] != None:
             id = record[0] + 1
         args = (id, params[0], params[1], params[2], self.today(), params[3])
         self.execUpdate(insert, args)
