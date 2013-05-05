@@ -184,3 +184,9 @@ div.article{
     border-radius: 4px;
     padding: 8px;
 }
+span.info i{
+    padding-left: 0;
+}
+span.info b{
+    padding: 0 4px;
+}
