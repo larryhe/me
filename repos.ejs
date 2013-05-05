@@ -1,0 +1,19 @@
+<b>All my open sourced projects</b>
+<ul id="projects" class="tag_list">
+</ul>
+<div id="repo_count"></div>
+<script>
+$(function(){
+    $.ajax({
+        type: "GET",
+        url: "https://api.github.com/users/larryhe/repos",
+        dataType: "json", 
+        success: function(result){
+            for( i in result ) {
+                $("#projects").append('<li><a href="' + result[i].html_url + '" title="' + result[i].description +'">' + result[i].name + '</a></li>');
+            }
+            $("#repo_count").append("Total Repos: " + result.length);
+        }
+    });
+});
+</script>
