@@ -98,7 +98,7 @@ p{
 }
 .content_resize {
 	margin:0 auto;
-	padding:16px 0 24px;
+	padding:16px 0 10px;
 	width:970px;
 }
 .content .sidebar {
@@ -179,10 +179,18 @@ ul.tag_list{
     padding: 4px 0;
     margin-left: 0;
 }
+ul.tag_list li{
+    line-height: 25px;
+}
 div.article{
     border: 1px solid #DEDEDE;
     border-radius: 4px;
     padding: 8px;
+    margin-bottom: 18px;
+}
+div.article .content{
+    max-height: 240px;
+    overflow-y: hidden;
 }
 span.info i{
     padding-left: 0;

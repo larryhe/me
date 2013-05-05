@@ -4,19 +4,33 @@
     <button type="submit" class="btn">Search</button>
 </div>
 </form>
+<div id="posted_blogs">
 <b>Recent Posts</b>
 <ul id="recent_blogs" class="tag_list">
 </ul>
 <b>Articles by categories</b>
 <ul id="article_by_tags" class="tag_list">
 </ul>
-
+</div>
 <script>
+function showBlog(data){
+    $('#blog_container').html(data);
+}
 $(function(){
     $.get('/admin/ajax_aggregate_blog.cgi', function(data){
         var html = $('<div>').append($.parseHTML(data));
-        $('#recent_blogs').html(html.find('div.recent_blogs'));
-        $('#article_by_tags').html(html.find('div.article_by_tags'));
+        $('#recent_blogs').html(html.find('div.recent_blogs').html());
+        $('#article_by_tags').html(html.find('div.article_by_tags').html());
+        $('#posted_blogs a').on('click', function(event){
+            $('#posted_blogs a').css('font-weight', 'normal');
+            var $this = $(this);
+            $this.css('font-weight', 'bold');
+            if($this.attr('blogid')){
+                $.get('/admin/ajax_blog_view.cgi?id=' + $this.attr('blogid'), showBlog);
+            }else{
+                $.get('/admin/ajax_blog_view.cgi?tag=' + $this.attr('tagid'), showBlog);
+            }
+        });
     });
 });
 </script>

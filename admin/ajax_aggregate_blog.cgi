@@ -9,7 +9,7 @@ form = cgi.FieldStorage()
 ret='<div class="recent_blogs">%s</div><div class="article_by_tags">%s</div>'
 
 def recent_blogs():
-    row='<li><a href="/detail.cgi?id=%s">%s</a></li>'
+    row='<li><a href="#" blogid="%s">%s</a></li>'
     h = []
     #pdb.set_trace()
     posts = db.recent_blogs()
@@ -18,7 +18,7 @@ def recent_blogs():
     return ''.join(h)
 
 def article_by_tags():
-    row='<li><a href="/blog.cgi?tag=%s">%s (%s)</a></li>'
+    row='<li><a href="#" tagid="%s">%s (%s)</a></li>'
     h = []
     tags = db.article_by_tags()
     for p in tags:

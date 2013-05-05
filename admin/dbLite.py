@@ -38,7 +38,7 @@ class Dblite:
 
     def getBlogById(self, id):
         params = (id,)
-        return self.execQuery('select b.id, b.title, t.desc, b.status from blog b, tag t where b.tag=t.id and b.id=?', params)
+        return self.execQuery('select b.id, b.title, t.desc, b.status, b.created_date, b.content from blog b, tag t where b.tag=t.id and b.id=?', params)
 
     def getBlogRawById(self, id):
         params = (id,)
@@ -54,4 +54,13 @@ class Dblite:
 
     def article_by_tags(self):
         sql = 'select t.id, t.desc, count(b.id) from tag t left join (select id, tag from blog where status=2) b on t.id=b.tag group by t.id'
+        return self.execQueryAll(sql)
+
+    def get_blog_by_tag(self, tag):
+        sql="select b.title,b.content,b.created_date, t.desc from blog b, tag t where b.tag = t.id and b.status=2 and b.tag=?"
+        params = (tag,)
+        return self.execQueryAll(sql, params)
+
+    def all_blogs(self):
+        sql="select b.title,b.content,b.created_date, t.desc from blog b, tag t where b.tag = t.id and b.status=2"
         return self.execQueryAll(sql)
