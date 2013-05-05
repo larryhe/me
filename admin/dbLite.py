@@ -47,3 +47,11 @@ class Dblite:
     def today(self):
         today = datetime.date.today()
         return today.strftime('%m-%d-%Y')
+
+    def recent_blogs(self):
+        sql = 'select id, title from blog where status=2 order by id desc limit 5'
+        return self.execQueryAll(sql)
+
+    def article_by_tags(self):
+        sql = 'select t.id, t.desc, count(b.id) from tag t left join (select id, tag from blog where status=2) b on t.id=b.tag group by t.id'
+        return self.execQueryAll(sql)

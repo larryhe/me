@@ -4,9 +4,19 @@
     <button type="submit" class="btn">Search</button>
 </div>
 </form>
-<ul id="my_projects">
-    My personal projects
-    <li><a href="">tinyhttpd</a></li>
-    <li><a href="">getfiles.vim</a></li>
-    <li><a href="">tinyproxy</a></li>
-<ul>
+<b>Recent Posts</b>
+<ul id="recent_blogs" class="tag_list">
+</ul>
+<b>Articles by categories</b>
+<ul id="article_by_tags" class="tag_list">
+</ul>
+
+<script>
+$(function(){
+    $.get('/admin/ajax_aggregate_blog.cgi', function(data){
+        var html = $('<div>').append($.parseHTML(data));
+        $('#recent_blogs').html(html.find('div.recent_blogs'));
+        $('#article_by_tags').html(html.find('div.article_by_tags'));
+    });
+});
+</script>
