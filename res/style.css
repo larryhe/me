@@ -187,9 +187,10 @@ div.article{
     border-radius: 4px;
     padding: 8px;
     margin-bottom: 18px;
+    position: relative;
 }
 div.article .content{
-    max-height: 240px;
+    height: 240px;
     overflow-y: hidden;
 }
 span.info i{
@@ -197,4 +198,18 @@ span.info i{
 }
 span.info b{
     padding: 0 4px;
+}
+span.moreLess{
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    bottom: 35px;
+    z-index: 9999;
+    background-color: #ffffff;
+    padding-left: 6px;
+    cursor: pointer;
+    color: #0088cc;
+}
+span.moreLess:hover{
+    font-weight: bold;
 }

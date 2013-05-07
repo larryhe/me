@@ -4,6 +4,7 @@
 $(function(){
     $.get('/admin/ajax_blog_view.cgi', function(data){
         $('#blog_container').html(data);
+        hookLessMore();
     });
 });
 </script>
