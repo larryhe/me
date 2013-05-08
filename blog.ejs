@@ -1,10 +1,17 @@
 <div id="blog_container">
 </div>
 <script>
+var spinnerHTML='<div class="spinner"><span class="loadding-icon"></span><h1>loading</h1></div>';
 $(function(){
+    var loader = $('div.spinner');
+    if(loader.length == 0){
+        $('body').append(spinnerHTML);
+        loader = $('div.spinner');
+    }
     $.get('/admin/ajax_blog_view.cgi', function(data){
         $('#blog_container').html(data);
         hookLessMore();
+        loader.css('display', 'none');
     });
 });
 </script>
