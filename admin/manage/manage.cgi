@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var fs = require('fs');
-var me = require('../me');
+var me = require('../../me');
 var Base = me.Base;
 var manage = Base.extend({
     options: {
